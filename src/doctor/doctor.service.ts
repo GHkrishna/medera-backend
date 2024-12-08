@@ -1,4 +1,4 @@
-import { AutoAcceptCredential } from '@credo-ts/core';
+import { AutoAcceptCredential, DidExchangeState } from '@credo-ts/core';
 import { Injectable } from '@nestjs/common';
 import { AgentProvider } from 'src/agent/agent';
 import { RestRootAgentWithTenants } from 'src/agent/agentType';
@@ -43,6 +43,21 @@ export class DoctorService {
         domain: this.agent.config.endpoints[0],
       }),
     };
+  }
+
+  async getConnectionList(): Promise<object> {
+    const tenantId = this.doctorTenantId;
+    const connectionRecords = await this.agent.modules.tenants.withTenantAgent(
+      { tenantId },
+      async (tenantAgent) => {
+        return tenantAgent.connections.findAllByQuery({
+          state: DidExchangeState.Completed,
+        });
+      },
+    );
+    return connectionRecords.map((connectionRecord) => {
+      return { id: connectionRecord.id, label: connectionRecord.theirLabel };
+    });
   }
 
   async prescribeMedicine(prescriptionDto: PrescriptionDto): Promise<object> {

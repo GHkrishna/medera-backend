@@ -20,6 +20,12 @@ export class DoctorController {
   public async getConnection(): Promise<object> {
     return this.doctorService.connectionQr();
   }
+
+  @Get('patientList')
+  public async getConnectionList(): Promise<object> {
+    return this.doctorService.getConnectionList();
+  }
+
   // prescribeMedicine
   @Post('prescribeMed')
   @ApiBody({ type: PrescriptionDto })
