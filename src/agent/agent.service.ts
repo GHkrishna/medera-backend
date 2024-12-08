@@ -1,9 +1,9 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable, NotFoundException } from '@nestjs/common';
 import { AgentProvider } from './agent';
 import { RestRootAgentWithTenants } from './agentType';
 import { TenantRecord } from '@credo-ts/tenants';
 import { CreateTenantOptionsDto } from './agent.dto';
-import { KeyType, TypedArrayEncoder } from '@credo-ts/core';
+import { KeyType, OutOfBandRecord, TypedArrayEncoder } from '@credo-ts/core';
 
 @Injectable()
 export class AgentService {
@@ -18,6 +18,29 @@ export class AgentService {
   getAgentDetails(): string {
     this.agent = this.agentProvider.getAgent();
     return 'hello';
+  }
+
+  // resolveShortUrl
+  async resolveShortUrl(
+    tenantId: string,
+    recordId: string,
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    _recordType?: string,
+  ): Promise<string> {
+    const oobRecord: OutOfBandRecord =
+      await this.agent.modules.tenants.withTenantAgent(
+        { tenantId },
+        async (tenantAgent) => {
+          return tenantAgent.oob.findById(recordId);
+        },
+      );
+    if (!oobRecord) {
+      throw new NotFoundException(`No such record exist with id ${recordId}`);
+    }
+    const url = oobRecord.outOfBandInvitation.toUrl({
+      domain: this.agent.config.endpoints[0],
+    });
+    return url;
   }
 
   async createTenant(config: CreateTenantOptionsDto): Promise<TenantRecord> {

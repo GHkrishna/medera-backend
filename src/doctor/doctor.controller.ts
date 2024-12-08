@@ -1,5 +1,7 @@
-import { Controller, Get, Post } from '@nestjs/common';
+import { Body, Controller, Get, Post } from '@nestjs/common';
+import { ApiBody } from '@nestjs/swagger';
 import { DoctorService } from 'src/doctor/doctor.service';
+import { PrescriptionDto } from './doctor.dto';
 
 @Controller('doctor')
 export class DoctorController {
@@ -20,7 +22,10 @@ export class DoctorController {
   }
   // prescribeMedicine
   @Post('prescribeMed')
-  public async prescribeMedicine(): Promise<string> {
-    return this.doctorService.prescribeMedicine();
+  @ApiBody({ type: PrescriptionDto })
+  public async prescribeMedicine(
+    @Body() prescriptionDto: PrescriptionDto,
+  ): Promise<object> {
+    return this.doctorService.prescribeMedicine(prescriptionDto);
   }
 }

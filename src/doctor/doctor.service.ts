@@ -2,6 +2,7 @@ import { AutoAcceptCredential } from '@credo-ts/core';
 import { Injectable } from '@nestjs/common';
 import { AgentProvider } from 'src/agent/agent';
 import { RestRootAgentWithTenants } from 'src/agent/agentType';
+import { PrescriptionDto } from './doctor.dto';
 
 @Injectable()
 export class DoctorService {
@@ -44,7 +45,7 @@ export class DoctorService {
     };
   }
 
-  async prescribeMedicine(): Promise<string> {
+  async prescribeMedicine(prescriptionDto: PrescriptionDto): Promise<object> {
     const tenantId = this.doctorTenantId;
     const oobRecordId = await this.agent.modules.tenants.withTenantAgent(
       { tenantId },
@@ -60,12 +61,12 @@ export class DoctorService {
                 ],
                 type: ['VerifiableCredential', 'Prescription'],
                 issuer: {
-                  id: 'did:key:zUC7H6ZsYRfRtHuxRxqF6BJxykJhSmnxRLayvyQub6xPkrkTf1ehWVVuTdoGqaNT6SHGVW4X7VBcjZaYpnUSdB7U9XVvvrbKmGtQyE9HnRf7JX3kuD8NDH2e4PUYjHReYDLhPiG',
+                  id: process.env.DOCTOR_DID,
                 },
-                issuanceDate: '2024-12-08T17:03:07.227Z',
+                issuanceDate: new Date().toISOString(),
                 credentialSubject: {
-                  prescription: '{"hello": "world"}',
-                  patientDetails: '{"hello": "world"}',
+                  prescription: prescriptionDto.prescription,
+                  patientDetails: prescriptionDto.patientDetails,
                 },
               },
               options: {
@@ -89,6 +90,8 @@ export class DoctorService {
         return outOfBandRecord.id;
       },
     );
-    return `${process.env.SHORT_URL_DOMAIN}/agent/${tenantId}/${oobRecordId}/credential`;
+    return {
+      credentialUrl: `${process.env.SHORT_URL_DOMAIN}/agent/${tenantId}/${oobRecordId}/credential`,
+    };
   }
 }
