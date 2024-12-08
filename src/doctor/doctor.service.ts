@@ -1,8 +1,13 @@
-import { AutoAcceptCredential, DidExchangeState } from '@credo-ts/core';
+import {
+  AutoAcceptCredential,
+  CredentialRole,
+  CredentialState,
+  DidExchangeState,
+} from '@credo-ts/core';
 import { Injectable } from '@nestjs/common';
 import { AgentProvider } from 'src/agent/agent';
 import { RestRootAgentWithTenants } from 'src/agent/agentType';
-import { PrescriptionDto } from './doctor.dto';
+import { PatientDetails, PrescriptionDto } from './doctor.dto';
 
 @Injectable()
 export class DoctorService {
@@ -57,6 +62,31 @@ export class DoctorService {
     );
     return connectionRecords.map((connectionRecord) => {
       return { id: connectionRecord.id, label: connectionRecord.theirLabel };
+    });
+  }
+
+  // getCredentialByPatient
+  async getCredentialByPatient(
+    patientConnectionIds: PatientDetails,
+  ): Promise<object> {
+    const tenantId = this.doctorTenantId;
+    const credentialRecords = await this.agent.modules.tenants.withTenantAgent(
+      { tenantId },
+      async (tenantAgent) => {
+        return tenantAgent.credentials.findAllByQuery({
+          credentialIds: patientConnectionIds.connectionIds,
+          role: CredentialRole.Issuer,
+          state: CredentialState.Done,
+        });
+      },
+    );
+    return credentialRecords.map((credentialRecord) => {
+      return {
+        id: credentialRecord.id,
+        createdAt: credentialRecord.createdAt,
+        updatedAt: credentialRecord.updatedAt,
+        credentialAttributes: credentialRecord.credentialAttributes,
+      };
     });
   }
 

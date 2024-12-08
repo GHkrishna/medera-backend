@@ -28,6 +28,8 @@ import {
   DifPresentationExchangeProofFormatService,
   JsonLdCredentialFormatService,
   W3cCredentialsModule,
+  AutoAcceptCredential,
+  AutoAcceptProof,
 } from '@credo-ts/core';
 import { anoncreds } from '@hyperledger/anoncreds-nodejs';
 import { ariesAskar } from '@hyperledger/aries-askar-nodejs';
@@ -78,6 +80,7 @@ export class AgentProvider implements OnModuleInit {
               proofFormats: [new DifPresentationExchangeProofFormatService()],
             }),
           ],
+          autoAcceptProofs: AutoAcceptProof.Always,
         }),
         credentials: new CredentialsModule({
           credentialProtocols: [
@@ -85,6 +88,7 @@ export class AgentProvider implements OnModuleInit {
               credentialFormats: [new JsonLdCredentialFormatService()],
             }),
           ],
+          autoAcceptCredentials: AutoAcceptCredential.Always,
         }),
         dids: new DidsModule({
           registrars: [new IndyVdrIndyDidRegistrar(), new KeyDidRegistrar()],
