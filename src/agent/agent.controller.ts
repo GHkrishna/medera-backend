@@ -9,4 +9,9 @@ export class AgentController {
     public async getHello(@Query('name') name: string): Promise<string> {
         return this.agentService.getHello(name)
     }
+
+    @Get('/agentDetails')
+    public getAgentDetails(): string {
+        return this.agentService.getAgentDetails()
+    }
 }
