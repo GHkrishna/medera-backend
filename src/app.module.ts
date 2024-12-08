@@ -1,20 +1,15 @@
-import { Module, OnModuleInit } from '@nestjs/common';
+import { Module } from '@nestjs/common';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { AgentController } from './agent/agent.controller';
 import { AgentService } from './agent/agent.service';
 import { AgentProvider } from './agent/agent';
+import { DoctorController } from './doctor/doctor.controller';
+import { DoctorService } from './doctor/doctor.service';
 
 @Module({
   imports: [],
-  controllers: [AppController, AgentController],
-  providers: [AppService, AgentService, AgentProvider],
+  controllers: [AppController, AgentController, DoctorController],
+  providers: [AppService, AgentService, AgentProvider, DoctorService],
 })
-export class AppModule implements OnModuleInit {
-  constructor(private readonly agentProvider: AgentProvider) {}
-
-  async onModuleInit() {
-    await this.agentProvider.initializeAgent(4001);
-  }
-}
-
+export class AppModule {}
