@@ -46,7 +46,9 @@ export class AgentProvider implements OnModuleInit {
   initializeAgent = async (port, agentConfig = null) => {
     console.log('Initializing agent');
     try {
-      const endpoints = ['http://' + process.env.AGENT_IP + ':' + port];
+      const endpoints = [
+        process.env.AGENT_PROTOCOL + '://' + process.env.AGENT_IP + ':' + port,
+      ];
 
       if (!agentConfig || agentConfig === null || agentConfig.length === 0) {
         agentConfig = {
