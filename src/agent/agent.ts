@@ -7,7 +7,7 @@ import {
   IndyVdrIndyDidRegistrar,
 } from '@credo-ts/indy-vdr';
 
-import { AskarModule } from '@credo-ts/askar';
+import { AskarModule, AskarMultiWalletDatabaseScheme } from '@credo-ts/askar';
 
 import {
   DidsModule,
@@ -57,6 +57,21 @@ export class AgentProvider implements OnModuleInit {
           walletConfig: {
             id: process.env.AgentWalletID,
             key: process.env.AgentWalletKey,
+            storage: {
+              type: 'postgres',
+              config: {
+                host: process.env.NEON_DB_HOST,
+                connectTimeout: 10,
+                maxConnections: 1000,
+                idleTimeout: 30000,
+              },
+              credentials: {
+                account: process.env.NEON_DB_ROLE,
+                password: process.env.NEON_DB_PASS,
+                adminAccount: process.env.NEON_DB_ROLE,
+                adminPassword: process.env.NEON_DB_PASS,
+              },
+            },
           },
           autoAcceptConnections: true,
           endpoints: endpoints,
@@ -69,6 +84,8 @@ export class AgentProvider implements OnModuleInit {
       const modules = {
         askar: new AskarModule({
           ariesAskar,
+          multiWalletDatabaseScheme:
+            AskarMultiWalletDatabaseScheme.ProfilePerWallet,
         }),
         anoncreds: new AnonCredsModule({
           registries: [new IndyVdrAnonCredsRegistry()],
@@ -113,7 +130,7 @@ export class AgentProvider implements OnModuleInit {
         config: agentConfig,
         dependencies: agentDependencies,
         modules: modules,
-      });
+      })as RestRootAgentWithTenants;
 
       const wsTransport = new WsOutboundTransport();
       const httpTransport = new HttpOutboundTransport();
