@@ -34,6 +34,11 @@ export class PharmacyController {
     return this.pharmacyService.getCredentialByPatient(patientConnectionIds);
   }
 
+  @Get('verifiedPrescreptionDetails')
+  public async getVerifiedPrescreptionDetails(): Promise<any> {
+    return this.pharmacyService.getVerifiedPrescreptionDetails();
+  }
+
   // provideReceipt
   @Post('provideReceipt')
   @ApiBody({ type: ReceiptDto })
