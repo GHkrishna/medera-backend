@@ -40,6 +40,7 @@ export class PharmacyService {
       async (tenantAgent) => {
         return tenantAgent.oob.createInvitation({
           goalCode: process.env.PHARMACY_DID,
+          goal: 'verify-prescription',
           multiUseInvitation: true,
         });
       },

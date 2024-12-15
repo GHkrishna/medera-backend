@@ -38,7 +38,7 @@ export class DoctorService {
       { tenantId },
       async (tenantAgent) => {
         return tenantAgent.oob.createInvitation({
-          goalCode: 'DoctorVerify',
+          goalCode: process.env.DOCTOR_DID,
           multiUseInvitation: true,
         });
       },
