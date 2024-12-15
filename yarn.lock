@@ -74,11 +74,6 @@
   dependencies:
     static-eval "2.0.2"
 
-"@azure/core-asynciterator-polyfill@^1.0.2":
-  version "1.0.2"
-  resolved "https://registry.yarnpkg.com/@azure/core-asynciterator-polyfill/-/core-asynciterator-polyfill-1.0.2.tgz#0dd3849fb8d97f062a39db0e5cadc9ffaf861fec"
-  integrity sha512-3rkP4LnnlWawl0LZptJOdXNrT/fHp2eQMadoasa6afspXdpGrtPZuAQc2PD0cpgyuoXtUWyC3tv7xfntjGS5Dw==
-
 "@babel/code-frame@^7.0.0", "@babel/code-frame@^7.12.13", "@babel/code-frame@^7.16.7", "@babel/code-frame@^7.25.9", "@babel/code-frame@^7.26.0", "@babel/code-frame@^7.26.2":
   version "7.26.2"
   resolved "https://registry.yarnpkg.com/@babel/code-frame/-/code-frame-7.26.2.tgz#4b5fab97d33338eff916235055f0ebc21e573a85"
@@ -370,21 +365,7 @@
   resolved "https://registry.yarnpkg.com/@colors/colors/-/colors-1.5.0.tgz#bb504579c1cae923e6576a4f5da43d25f97bdbd9"
   integrity sha512-ooWCrlZP11i8GImSjTHYHLkvFDP48nS4+204nGb1RiX/WXYHmJA2III9/e2DWVabCESdW7hBAEzHRqUn9OUVvQ==
 
-"@credo-ts/anoncreds@0.5.13", "@credo-ts/anoncreds@^0.5.3":
-  version "0.5.13"
-  resolved "https://registry.yarnpkg.com/@credo-ts/anoncreds/-/anoncreds-0.5.13.tgz#2248695a9e59f909057afb5dd0343d2e47d4e5af"
-  integrity sha512-laWAdG+X+MVHSsqh8eo1J/EDJEdxRBYqN/qzaktOgLnG7gbboJCIXQrU6LX/+Vp/wcU755Ke7awnCTVreKaNtQ==
-  dependencies:
-    "@astronautlabs/jsonpath" "^1.1.2"
-    "@credo-ts/core" "0.5.13"
-    "@sphereon/pex-models" "^2.3.1"
-    big-integer "^1.6.51"
-    bn.js "^5.2.1"
-    class-transformer "0.5.1"
-    class-validator "0.14.1"
-    reflect-metadata "^0.1.13"
-
-"@credo-ts/askar@^0.5.13", "@credo-ts/askar@^0.5.3":
+"@credo-ts/askar@0.5.13", "@credo-ts/askar@^0.5.13":
   version "0.5.13"
   resolved "https://registry.yarnpkg.com/@credo-ts/askar/-/askar-0.5.13.tgz#55165259e6ca2a27125a64b1f708860a9106cad3"
   integrity sha512-w8I7gB+Em8ME+4OHK9Ulz8wXvXzFw0P00dHcWuo1jKmHX6pz3u3Nbdag7PzDplE4Nzu19hgZPY91ndRql+4euw==
@@ -396,7 +377,7 @@
     rxjs "^7.8.0"
     tsyringe "^4.8.0"
 
-"@credo-ts/core@0.5.13", "@credo-ts/core@^0.5.13", "@credo-ts/core@^0.5.3":
+"@credo-ts/core@0.5.13", "@credo-ts/core@^0.5.13":
   version "0.5.13"
   resolved "https://registry.yarnpkg.com/@credo-ts/core/-/core-0.5.13.tgz#80b101cdcb81d657ddb5dea0fba173ed4c3e1bae"
   integrity sha512-TBmcbL7ftEF+7ccxJDFYeCObK8ap8McefJe+zwXqXFerfCH2RHxK45Vyfw5ltPoVxkud05fohjzoWWTZgYQkEQ==
@@ -444,15 +425,7 @@
     web-did-resolver "^2.0.21"
     webcrypto-core "^1.8.0"
 
-"@credo-ts/indy-vdr@^0.5.3":
-  version "0.5.13"
-  resolved "https://registry.yarnpkg.com/@credo-ts/indy-vdr/-/indy-vdr-0.5.13.tgz#8644a04712ff13b662248eb12538ffa1d5854445"
-  integrity sha512-oUH9HrOd2NpGXyrIrY3mod4+cuUy+WfWnexRSgWR4g8JQZ8fFYYzeZaKpEekXeSx8HaAU3z9bWo/+HjLsjZVjA==
-  dependencies:
-    "@credo-ts/anoncreds" "0.5.13"
-    "@credo-ts/core" "0.5.13"
-
-"@credo-ts/node@^0.5.3":
+"@credo-ts/node@0.5.13":
   version "0.5.13"
   resolved "https://registry.yarnpkg.com/@credo-ts/node/-/node-0.5.13.tgz#55eb96e88476c59f7bfa86ace22dc1fd145aa843"
   integrity sha512-CeE84CfSyCFB++OYepenye1HpgVpPftkCtKb/u1N7AvEAshsnT2E7cOprt1ToPGuOF/neFi/ImGF0IDNPhgHaQ==
@@ -465,16 +438,7 @@
     rxjs "^7.8.0"
     ws "^8.13.0"
 
-"@credo-ts/react-native@^0.5.3":
-  version "0.5.13"
-  resolved "https://registry.yarnpkg.com/@credo-ts/react-native/-/react-native-0.5.13.tgz#a2ff2da0811b382a7f614347ef1a2863b2725827"
-  integrity sha512-Am0W6wCTCtEIIcwPBzV+F8hqPMkG38ZmFyrzsvI2AoeAZMTWAISeWe7vLhlh4bz/sIRX00oeMeLtm+R/NnCHSA==
-  dependencies:
-    "@azure/core-asynciterator-polyfill" "^1.0.2"
-    "@credo-ts/core" "0.5.13"
-    events "^3.3.0"
-
-"@credo-ts/tenants@^0.5.13":
+"@credo-ts/tenants@0.5.13":
   version "0.5.13"
   resolved "https://registry.yarnpkg.com/@credo-ts/tenants/-/tenants-0.5.13.tgz#1e9599eb67b8e78a87c6f29adba09275e9b67d73"
   integrity sha512-56VcrvDfj0CxcOTSj8o+U4fbzVk/MeBWbwCSQl9eBq0iz2iGjVMzw9IngRVYmHWVxLKciskFk9/i2NeifDJFUw==
@@ -974,24 +938,7 @@
   resolved "https://registry.yarnpkg.com/@humanwhocodes/object-schema/-/object-schema-2.0.3.tgz#4a2868d75d6d6963e423bcf90b7fd1be343409d3"
   integrity sha512-93zYdMES/c1D69yZiKDBj0V24vqNzB/koF26KPaagAfd3P/4gUlh3Dys5ogAK+Exi9QyzlD8x/08Zt7wIKcDcA==
 
-"@hyperledger/anoncreds-nodejs@0.2.2":
-  version "0.2.2"
-  resolved "https://registry.yarnpkg.com/@hyperledger/anoncreds-nodejs/-/anoncreds-nodejs-0.2.2.tgz#5344427c554fc7280efe22f2061e3a26023fdd84"
-  integrity sha512-qRMSSyERwjAVCPlHjCAY3OJno4DNIJ0uLi+g6ek7HrFVich3X6Kzr0ng/MSiDKmTBXyGiip1zDIBABA8y3yNGg==
-  dependencies:
-    "@2060.io/ffi-napi" "^4.0.9"
-    "@2060.io/ref-napi" "^3.0.6"
-    "@hyperledger/anoncreds-shared" "0.2.2"
-    "@mapbox/node-pre-gyp" "^1.0.11"
-    ref-array-di "1.2.2"
-    ref-struct-di "1.1.1"
-
-"@hyperledger/anoncreds-shared@0.2.2":
-  version "0.2.2"
-  resolved "https://registry.yarnpkg.com/@hyperledger/anoncreds-shared/-/anoncreds-shared-0.2.2.tgz#492995d076448d682a828312bbba58314e943c4a"
-  integrity sha512-dfYpqbAkqtHJkRkuGmWdJruHfLegLUIbu/dSAWnz5dMRKd8ad8rEnQkwRnockQZ/pc7QDr8kxfG6bT2YDGZeMw==
-
-"@hyperledger/aries-askar-nodejs@0.2.3":
+"@hyperledger/aries-askar-nodejs@^0.2.0":
   version "0.2.3"
   resolved "https://registry.yarnpkg.com/@hyperledger/aries-askar-nodejs/-/aries-askar-nodejs-0.2.3.tgz#f939c19047c78b9903b422f992b4f5406ac3aae3"
   integrity sha512-2BnGqK08Y96DEB8tDuXy2x+soetChyMGB0+L1yqdHx1Xv5FvRerYrTXdTjJXTW6ANb48k2Np8WlJ4YNePSo6ww==
@@ -1009,23 +956,6 @@
   integrity sha512-g9lao8qa80kPCLqqp02ovNqEfQIrm6cAf4xZVzD5P224VmOhf4zM6AKplQTvQx7USNKoXroe93JrOOSVxPeqrA==
   dependencies:
     buffer "^6.0.3"
-
-"@hyperledger/indy-vdr-nodejs@0.2.2":
-  version "0.2.2"
-  resolved "https://registry.yarnpkg.com/@hyperledger/indy-vdr-nodejs/-/indy-vdr-nodejs-0.2.2.tgz#f1f5ed1b9c34103703882dbc6c10fe480d33b0e6"
-  integrity sha512-mc0iKuHCtKuOV0sMnGOTVWnQrpfBMS+1tIRyob+CvGCvwC2llGo3Hu5AvgPcR9nqCo/wJ0LoKBo66dYYb0uZbw==
-  dependencies:
-    "@2060.io/ffi-napi" "^4.0.9"
-    "@2060.io/ref-napi" "^3.0.6"
-    "@hyperledger/indy-vdr-shared" "0.2.2"
-    "@mapbox/node-pre-gyp" "^1.0.10"
-    ref-array-di "^1.2.2"
-    ref-struct-di "^1.1.1"
-
-"@hyperledger/indy-vdr-shared@0.2.2":
-  version "0.2.2"
-  resolved "https://registry.yarnpkg.com/@hyperledger/indy-vdr-shared/-/indy-vdr-shared-0.2.2.tgz#9ca8b56cd89ab18792d129a0358b641e211274e3"
-  integrity sha512-9425MHU3K+/ahccCRjOIX3Z/51gqxvp3Nmyujyqlx9cd7PWG2Rianx7iNWecFBkdAEqS0DfHsb6YqqH39YZp/A==
 
 "@isaacs/cliui@^8.0.2":
   version "8.0.2"
@@ -1317,7 +1247,7 @@
   resolved "https://registry.yarnpkg.com/@lukeed/csprng/-/csprng-1.1.0.tgz#1e3e4bd05c1cc7a0b2ddbd8a03f39f6e4b5e6cfe"
   integrity sha512-Z7C/xXCiGWsg0KuKsHTKJxbWhpI3Vs5GwLfOean7MGyVFGqdRgBbAjOCh6u4bbjPc/8MJ2pZmK/0DLdCbivLDA==
 
-"@mapbox/node-pre-gyp@^1.0.10", "@mapbox/node-pre-gyp@^1.0.11":
+"@mapbox/node-pre-gyp@^1.0.11":
   version "1.0.11"
   resolved "https://registry.yarnpkg.com/@mapbox/node-pre-gyp/-/node-pre-gyp-1.0.11.tgz#417db42b7f5323d79e93b34a6d7a2a12c0df43fa"
   integrity sha512-Yhlar6v9WQgUp/He7BdgzOz8lqMQ8sU+jkCq7Wx8Myc5YFJLbEe7lgui/V7G1qB1DJykHSGwreceSaD60Y0PUQ==
@@ -6265,7 +6195,7 @@ real-require@^0.2.0:
   resolved "https://registry.yarnpkg.com/real-require/-/real-require-0.2.0.tgz#209632dea1810be2ae063a6ac084fee7e33fba78"
   integrity sha512-57frrGM/OCTLqLOAh0mhVA9VBMHd+9U7Zb2THMGdBUoZVOtGbJzjxsYGDJ3A9AYYCP4hn6y1TVbaOfzWtm5GFg==
 
-ref-array-di@1.2.2, ref-array-di@^1.2.2:
+ref-array-di@^1.2.2:
   version "1.2.2"
   resolved "https://registry.yarnpkg.com/ref-array-di/-/ref-array-di-1.2.2.tgz#ceee9d667d9c424b5a91bb813457cc916fb1f64d"
   integrity sha512-jhCmhqWa7kvCVrWhR/d7RemkppqPUdxEil1CtTtm7FkZV8LcHHCK3Or9GinUiFP5WY3k0djUkMvhBhx49Jb2iA==
@@ -6273,7 +6203,7 @@ ref-array-di@1.2.2, ref-array-di@^1.2.2:
     array-index "^1.0.0"
     debug "^3.1.0"
 
-ref-struct-di@1.1.1, ref-struct-di@^1.1.0, ref-struct-di@^1.1.1:
+ref-struct-di@^1.1.0, ref-struct-di@^1.1.1:
   version "1.1.1"
   resolved "https://registry.yarnpkg.com/ref-struct-di/-/ref-struct-di-1.1.1.tgz#5827b1d3b32372058f177547093db1fe1602dc10"
   integrity sha512-2Xyn/0Qgz89VT+++WP0sTosdm9oeowLP23wRJYhG4BFdMUrLj3jhwHZNEytYNYgtPKLNTP3KJX4HEgBvM1/Y2g==
