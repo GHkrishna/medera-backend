@@ -102,9 +102,9 @@ export class AgentProvider implements OnModuleInit {
           autoAcceptCredentials: AutoAcceptCredential.Always,
         }),
         dids: new DidsModule({
-        //   registrars: [new HederaDidRegistrar()],
-        //   resolvers: [new HederaDidResolver()],
-        // }),
+          // registrars: [new HederaDidRegistrar()],
+          // resolvers: [new HederaDidResolver()],
+        }),
         tenants: new TenantsModule<typeof modules>({
           sessionAcquireTimeout:
             Number(process.env.SESSION_ACQUIRE_TIMEOUT) || Infinity,
