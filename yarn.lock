@@ -4327,9 +4327,9 @@ hasown@^2.0.2:
   dependencies:
     function-bind "^1.1.2"
 
-"hedera-credo-module@file:./hedera-credo-module-0.0.0.tgz":
-  version "0.0.0"
-  resolved "file:./hedera-credo-module-0.0.0.tgz#2a60f68ab48422a8bd16b530dc8efbac880f2fbb"
+"hedera-credo-module@file:./hedera-credo-module-0.0.2.tgz":
+  version "0.0.2"
+  resolved "file:./hedera-credo-module-0.0.2.tgz#2983752bd548dba92a7142d24ee2c1a1519cf52d"
   dependencies:
     "@credo-ts/askar" "^0.5.13"
     "@credo-ts/core" "^0.5.13"
