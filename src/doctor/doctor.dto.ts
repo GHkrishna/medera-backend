@@ -1,5 +1,5 @@
 import { ApiProperty, ApiPropertyOptional } from '@nestjs/swagger';
-import { IsArray, IsNotEmpty } from 'class-validator';
+import { IsNotEmpty } from 'class-validator';
 
 export class PrescriptionDto {
   @ApiProperty()
