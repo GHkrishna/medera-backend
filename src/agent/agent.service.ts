@@ -3,7 +3,12 @@ import { AgentProvider } from './agent';
 import { RestRootAgentWithTenants } from './agentType';
 import { TenantRecord } from '@credo-ts/tenants';
 import { CreateTenantOptionsDto } from './agent.dto';
-import { KeyType, OutOfBandRecord, TypedArrayEncoder } from '@credo-ts/core';
+import {
+  DidExchangeState,
+  KeyType,
+  OutOfBandRecord,
+  TypedArrayEncoder,
+} from '@credo-ts/core';
 
 @Injectable()
 export class AgentService {
@@ -66,5 +71,16 @@ export class AgentService {
       },
     );
     return didKey.didState.did;
+  }
+
+  async getConnection(tenantId: string) {
+    return this.agent.modules.tenants.withTenantAgent(
+      { tenantId },
+      async (tenantAgent) => {
+        return tenantAgent.connections.findAllByQuery({
+          state: DidExchangeState.Completed,
+        });
+      },
+    );
   }
 }
