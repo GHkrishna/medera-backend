@@ -33,7 +33,7 @@
     "class-validator": "^0.14.1",
     "deferred": "^0.7.11",
     "dotenv": "^16.0.3",
-    "hedera-credo-module": "file:./hedera-credo-module-0.0.0.tgz",
+    "hedera-credo-module": "file:./hedera-credo-module-0.0.2.tgz",
     "patch-package": "^8.0.0",
     "postinstall-postinstall": "^2.1.0",
     "reflect-metadata": "^0.1.13",
