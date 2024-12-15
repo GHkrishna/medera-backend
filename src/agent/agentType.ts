@@ -1,13 +1,3 @@
-import {
-  AnonCredsRegistry,
-  LegacyIndyCredentialFormatService,
-  LegacyIndyProofFormatService,
-  V1ProofProtocol,
-  AnonCredsProofFormatService,
-  V1CredentialProtocol,
-  AnonCredsCredentialFormatService,
-  AnonCredsModule,
-} from '@credo-ts/anoncreds';
 import { AskarModule, AskarMultiWalletDatabaseScheme } from '@credo-ts/askar';
 import {
   Agent,
@@ -18,7 +8,6 @@ import {
   DidsModule,
   DifPresentationExchangeProofFormatService,
   JsonLdCredentialFormatService,
-  JwkDidRegistrar,
   JwkDidResolver,
   KeyDidRegistrar,
   KeyDidResolver,
@@ -31,10 +20,8 @@ import {
   W3cCredentialsModule,
   WebDidResolver,
 } from '@credo-ts/core';
-import { IndyVdrPoolConfig, IndyVdrModule } from '@credo-ts/indy-vdr';
 import { TenantsModule } from '@credo-ts/tenants';
 import { TenantAgent } from '@credo-ts/tenants/build/TenantAgent';
-import { anoncreds } from '@hyperledger/anoncreds-nodejs';
 import { ariesAskar } from '@hyperledger/aries-askar-nodejs';
 
 type ModulesWithoutTenants = Omit<
@@ -57,15 +44,9 @@ export function getAgentModules(options: {
   autoAcceptProofs: AutoAcceptProof;
   autoAcceptCredentials: AutoAcceptCredential;
   autoAcceptMediationRequests: boolean;
-  indyLedgers?: [IndyVdrPoolConfig, ...IndyVdrPoolConfig[]];
-  extraAnonCredsRegistries?: AnonCredsRegistry[];
   multiTenant: boolean;
   baseUrl: string;
 }) {
-  const legacyIndyCredentialFormatService =
-    new LegacyIndyCredentialFormatService();
-  const legacyIndyProofFormatService = new LegacyIndyProofFormatService();
-
   const baseModules = {
     connections: new ConnectionsModule({
       autoAcceptConnections: options.autoAcceptConnections,
@@ -73,38 +54,18 @@ export function getAgentModules(options: {
     proofs: new ProofsModule({
       autoAcceptProofs: options.autoAcceptProofs,
       proofProtocols: [
-        new V1ProofProtocol({
-          indyProofFormat: legacyIndyProofFormatService,
-        }),
         new V2ProofProtocol({
-          proofFormats: [
-            legacyIndyProofFormatService,
-            new AnonCredsProofFormatService(),
-            new DifPresentationExchangeProofFormatService(),
-          ],
+          proofFormats: [new DifPresentationExchangeProofFormatService()],
         }),
       ],
     }),
     credentials: new CredentialsModule({
       autoAcceptCredentials: options.autoAcceptCredentials,
       credentialProtocols: [
-        new V1CredentialProtocol({
-          indyCredentialFormat: legacyIndyCredentialFormatService,
-        }),
         new V2CredentialProtocol({
-          credentialFormats: [
-            legacyIndyCredentialFormatService,
-            new AnonCredsCredentialFormatService(),
-            new JsonLdCredentialFormatService(),
-          ],
+          credentialFormats: [new JsonLdCredentialFormatService()],
         }),
       ],
-    }),
-    anoncreds: new AnonCredsModule({
-      registries: (options.extraAnonCredsRegistries ?? []) as [
-        AnonCredsRegistry,
-      ],
-      anoncreds,
     }),
     askar: new AskarModule({
       ariesAskar,
@@ -115,11 +76,7 @@ export function getAgentModules(options: {
       autoAcceptMediationRequests: options.autoAcceptMediationRequests,
     }),
     dids: new DidsModule({
-      registrars: [
-        new KeyDidRegistrar(),
-        new JwkDidRegistrar(),
-        new PeerDidRegistrar(),
-      ],
+      registrars: [new KeyDidRegistrar(), new PeerDidRegistrar()],
       resolvers: [
         new WebDidResolver(),
         new KeyDidResolver(),
@@ -132,7 +89,6 @@ export function getAgentModules(options: {
 
   const modules: typeof baseModules & {
     tenants?: TenantsModule<typeof baseModules>;
-    indyVdr?: IndyVdrModule;
   } = baseModules;
 
   if (options.multiTenant) {

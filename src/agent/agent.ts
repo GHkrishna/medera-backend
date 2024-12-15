@@ -1,11 +1,4 @@
-import { AnonCredsModule } from '@credo-ts/anoncreds';
 import { TenantsModule } from '@credo-ts/tenants';
-
-import {
-  IndyVdrAnonCredsRegistry,
-  IndyVdrIndyDidResolver,
-  IndyVdrIndyDidRegistrar,
-} from '@credo-ts/indy-vdr';
 
 import { AskarModule, AskarMultiWalletDatabaseScheme } from '@credo-ts/askar';
 
@@ -16,11 +9,7 @@ import {
   CredentialsModule,
   V2CredentialProtocol,
   ConnectionsModule,
-  KeyDidRegistrar,
-  KeyDidResolver,
-  WebDidResolver,
   HttpOutboundTransport,
-  WsOutboundTransport,
   Agent,
   DidCommMimeType,
   ConsoleLogger,
@@ -31,13 +20,17 @@ import {
   AutoAcceptCredential,
   AutoAcceptProof,
 } from '@credo-ts/core';
-import { anoncreds } from '@hyperledger/anoncreds-nodejs';
 import { ariesAskar } from '@hyperledger/aries-askar-nodejs';
 import { agentDependencies, HttpInboundTransport } from '@credo-ts/node';
 
 import { Injectable, OnModuleInit } from '@nestjs/common';
 import { RestRootAgentWithTenants } from './agentType';
 import * as e from 'express';
+import {
+  HederaDidRegistrar,
+  HederaDidResolver,
+  HederaModule,
+} from 'hedera-credo-module';
 
 @Injectable()
 export class AgentProvider implements OnModuleInit {
@@ -88,10 +81,7 @@ export class AgentProvider implements OnModuleInit {
           multiWalletDatabaseScheme:
             AskarMultiWalletDatabaseScheme.ProfilePerWallet,
         }),
-        anoncreds: new AnonCredsModule({
-          registries: [new IndyVdrAnonCredsRegistry()],
-          anoncreds,
-        }),
+        hedera: new HederaModule({}),
         connections: new ConnectionsModule({
           autoAcceptConnections: true,
         }),
@@ -112,12 +102,8 @@ export class AgentProvider implements OnModuleInit {
           autoAcceptCredentials: AutoAcceptCredential.Always,
         }),
         dids: new DidsModule({
-          registrars: [new IndyVdrIndyDidRegistrar(), new KeyDidRegistrar()],
-          resolvers: [
-            new IndyVdrIndyDidResolver(),
-            new KeyDidResolver(),
-            new WebDidResolver(),
-          ],
+          registrars: [new HederaDidRegistrar()],
+          resolvers: [new HederaDidResolver()],
         }),
         tenants: new TenantsModule<typeof modules>({
           sessionAcquireTimeout:
@@ -133,12 +119,9 @@ export class AgentProvider implements OnModuleInit {
         modules: modules,
       }) as RestRootAgentWithTenants;
 
-      const wsTransport = new WsOutboundTransport();
       const httpTransport = new HttpOutboundTransport();
 
       // Register a simple `WebSocket` outbound transport
-      agent.registerOutboundTransport(wsTransport);
-
       // Register a simple `Http` outbound transport
       agent.registerOutboundTransport(httpTransport);
 
