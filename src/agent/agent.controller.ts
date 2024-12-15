@@ -1,8 +1,9 @@
-import { Body, Controller, Get, Param, Post, Query } from '@nestjs/common';
+import { Body, Controller, Get, Param, Post, Query, Res } from '@nestjs/common';
 import { AgentService } from './agent.service';
 import { TenantRecord } from '@credo-ts/tenants';
 import { ApiBody } from '@nestjs/swagger';
 import { CreateTenantOptionsDto } from './agent.dto';
+import { Response } from 'express';
 
 @Controller('agent')
 export class AgentController {
@@ -19,11 +20,14 @@ export class AgentController {
   }
 
   @Get('/:tenantId/:recordId')
-  public resolveShortUrl(
+  public async resolveShortUrl(
     @Param('tenantId') tenantId: string,
     @Param('recordId') recordId: string,
-  ): Promise<string> {
-    return this.agentService.resolveShortUrl(tenantId, recordId);
+    @Res() res: Response,
+  ) {
+    const result = await this.agentService.resolveShortUrl(tenantId, recordId);
+    // res.type('application/json');
+    res.json(result);
   }
 
   @Post('/createTenant')

@@ -26,7 +26,7 @@ export class AgentService {
   }
 
   // resolveShortUrl
-  async resolveShortUrl(tenantId: string, recordId: string): Promise<string> {
+  async resolveShortUrl(tenantId: string, recordId: string) {
     const oobRecord: OutOfBandRecord =
       await this.agent.modules.tenants.withTenantAgent(
         { tenantId },
