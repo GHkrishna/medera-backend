@@ -74,7 +74,7 @@ export class DoctorService {
       { tenantId },
       async (tenantAgent) => {
         return tenantAgent.credentials.findAllByQuery({
-          credentialIds: patientConnectionIds.connectionIds,
+          connectionId: patientConnectionIds.connectionIds,
           role: CredentialRole.Issuer,
           state: CredentialState.Done,
         });
@@ -102,7 +102,7 @@ export class DoctorService {
               credential: {
                 '@context': [
                   'https://www.w3.org/2018/credentials/v1',
-                  'https://gist.githubusercontent.com/GHkrishna/e3428d5c714d3e05a9d3cd176ece7432/raw/5344106f34e54be48d0ff7e689265a232d3d191a/prescriptionSchema.json',
+                  process.env.PRESCRIPTION_SCHEMA,
                 ],
                 type: ['VerifiableCredential', 'Prescription'],
                 issuer: {
@@ -130,7 +130,7 @@ export class DoctorService {
           messages: [credentialMessage],
           autoAcceptConnection: true,
           // imageUrl: createOfferOptions?.imageUrl,
-          goalCode: 'doctor prescription',
+          goalCode: process.env.DOCTOR_DID,
         });
 
         return outOfBandRecord.id;

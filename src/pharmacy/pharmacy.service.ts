@@ -66,7 +66,21 @@ export class PharmacyService {
     });
   }
 
-  async getVerifiedPrescreptionDetails(): Promise<Promise<any> | any> {
+  async getVerifiedPrescreptionDetailById(
+    prescriptionId: string,
+  ): Promise<any> {
+    const tenantId = this.pharmacyTenantId;
+    const presentationRecords =
+      await this.agent.modules.tenants.withTenantAgent(
+        { tenantId },
+        async (tenantAgent) => {
+          return tenantAgent.proofs.getFormatData(prescriptionId);
+        },
+      );
+    return presentationRecords;
+  }
+
+  async getVerifiedPrescreptionDetails(): Promise<any> {
     const tenantId = this.pharmacyTenantId;
     const presentationRecords =
       await this.agent.modules.tenants.withTenantAgent(

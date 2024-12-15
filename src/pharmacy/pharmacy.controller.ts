@@ -1,4 +1,4 @@
-import { Body, Controller, Get, Post } from '@nestjs/common';
+import { Body, Controller, Get, Param, Post } from '@nestjs/common';
 import { PharmacyService } from './pharmacy.service';
 import { ApiBody } from '@nestjs/swagger';
 import { PatientDetails, ReceiptDto } from './pharmacy.dto';
@@ -37,6 +37,15 @@ export class PharmacyController {
   @Get('verifiedPrescreptionDetails')
   public async getVerifiedPrescreptionDetails(): Promise<any> {
     return this.pharmacyService.getVerifiedPrescreptionDetails();
+  }
+
+  @Get('verifiedPrescreptionDetailById')
+  public async getVerifiedPrescreptionDetailById(
+    @Param('prescriptionId') prescriptionId: string,
+  ): Promise<any> {
+    return this.pharmacyService.getVerifiedPrescreptionDetailById(
+      prescriptionId,
+    );
   }
 
   // provideReceipt

@@ -18,6 +18,5 @@ export class PrescriptionDto {
 export class PatientDetails {
   @ApiProperty()
   @IsNotEmpty()
-  @IsArray()
-  connectionIds: string[];
+  connectionIds: string;
 }
