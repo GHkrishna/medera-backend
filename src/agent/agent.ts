@@ -37,13 +37,14 @@ import { agentDependencies, HttpInboundTransport } from '@credo-ts/node';
 
 import { Injectable, OnModuleInit } from '@nestjs/common';
 import { RestRootAgentWithTenants } from './agentType';
+import * as e from 'express';
+
 @Injectable()
 export class AgentProvider implements OnModuleInit {
   private agent: RestRootAgentWithTenants;
-  async onModuleInit(): Promise<void> {
-    await this.initializeAgent(4001);
-  }
-  initializeAgent = async (port, agentConfig = null) => {
+  async onModuleInit(): Promise<void> {}
+
+  initializeAgent = async (port, expressApp: e.Express, agentConfig = null) => {
     console.log('Initializing agent');
     try {
       const ep =
@@ -130,7 +131,7 @@ export class AgentProvider implements OnModuleInit {
         config: agentConfig,
         dependencies: agentDependencies,
         modules: modules,
-      })as RestRootAgentWithTenants;
+      }) as RestRootAgentWithTenants;
 
       const wsTransport = new WsOutboundTransport();
       const httpTransport = new HttpOutboundTransport();
@@ -141,7 +142,11 @@ export class AgentProvider implements OnModuleInit {
       // Register a simple `Http` outbound transport
       agent.registerOutboundTransport(httpTransport);
 
-      const httpInbound = new HttpInboundTransport({ port: port });
+      const httpInbound = new HttpInboundTransport({
+        app: expressApp, // Use shared Express app
+        // path: '/agent', // Define agent-specific route
+        port: 0, // Port is managed by the main server
+      });
       agent.registerInboundTransport(httpInbound);
       await agent.initialize();
 
