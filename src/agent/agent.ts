@@ -26,11 +26,11 @@ import { agentDependencies, HttpInboundTransport } from '@credo-ts/node';
 import { Injectable, OnModuleInit } from '@nestjs/common';
 import { RestRootAgentWithTenants } from './agentType';
 import * as e from 'express';
-// import {
-//   HederaDidRegistrar,
-//   HederaDidResolver,
-//   HederaModule,
-// } from 'hedera-credo-module';
+import {
+  HederaDidRegistrar,
+  HederaDidResolver,
+  HederaModule,
+} from 'hedera-credo-module';
 
 @Injectable()
 export class AgentProvider implements OnModuleInit {
@@ -81,7 +81,10 @@ export class AgentProvider implements OnModuleInit {
           multiWalletDatabaseScheme:
             AskarMultiWalletDatabaseScheme.ProfilePerWallet,
         }),
-        // hedera: new HederaModule({}),
+        hedera: new HederaModule({
+          operatorId: process.env.ACCOUNT_ID,
+          operatorKey: process.env.PRIVATE_KEY,
+        }),
         connections: new ConnectionsModule({
           autoAcceptConnections: true,
         }),
@@ -102,8 +105,8 @@ export class AgentProvider implements OnModuleInit {
           autoAcceptCredentials: AutoAcceptCredential.Always,
         }),
         dids: new DidsModule({
-          // registrars: [new HederaDidRegistrar()],
-          // resolvers: [new HederaDidResolver()],
+          registrars: [new HederaDidRegistrar()],
+          resolvers: [new HederaDidResolver()],
         }),
         tenants: new TenantsModule<typeof modules>({
           sessionAcquireTimeout:
