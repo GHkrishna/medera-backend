@@ -110,6 +110,7 @@ export class DoctorService {
                 },
                 issuanceDate: new Date().toISOString(),
                 credentialSubject: {
+                  id: prescriptionDto?.did ? prescriptionDto.did : undefined,
                   prescription: prescriptionDto.prescription,
                   patientDetails: prescriptionDto.patientDetails,
                 },

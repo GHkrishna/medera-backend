@@ -1,4 +1,4 @@
-import { ApiProperty } from '@nestjs/swagger';
+import { ApiProperty, ApiPropertyOptional } from '@nestjs/swagger';
 import { IsArray, IsNotEmpty } from 'class-validator';
 
 export class PrescriptionDto {
@@ -9,6 +9,10 @@ export class PrescriptionDto {
   @ApiProperty()
   @IsNotEmpty()
   patientDetails: string;
+
+  @ApiPropertyOptional()
+  @IsNotEmpty()
+  did?: string;
 }
 
 export class PatientDetails {
