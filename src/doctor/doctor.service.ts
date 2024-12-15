@@ -137,7 +137,7 @@ export class DoctorService {
       },
     );
     return {
-      credentialUrl: `${process.env.SHORT_URL_DOMAIN}/agent/${tenantId}/${oobRecordId}/credential`,
+      credentialUrl: `${process.env.SHORT_URL_DOMAIN}/agent/${tenantId}/${oobRecordId}`,
     };
   }
 }

@@ -165,7 +165,7 @@ export class PharmacyService {
       },
     );
     return {
-      credentialUrl: `${process.env.SHORT_URL_DOMAIN}/agent/${tenantId}/${oobRecordId}/credential`,
+      credentialUrl: `${process.env.SHORT_URL_DOMAIN}/agent/${tenantId}/${oobRecordId}`,
     };
   }
 }
