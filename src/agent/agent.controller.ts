@@ -18,7 +18,7 @@ export class AgentController {
     return this.agentService.getAgentDetails();
   }
 
-  @Get('/:tenantId/:recordId/:recordType')
+  @Get('/:tenantId/:recordId')
   public resolveShortUrl(
     @Param('tenantId') tenantId: string,
     @Param('recordId') recordId: string,
