@@ -22,9 +22,8 @@ export class AgentController {
   public resolveShortUrl(
     @Param('tenantId') tenantId: string,
     @Param('recordId') recordId: string,
-    @Param('recordType') recordType?: string,
   ): Promise<string> {
-    return this.agentService.resolveShortUrl(tenantId, recordId, recordType);
+    return this.agentService.resolveShortUrl(tenantId, recordId);
   }
 
   @Post('/createTenant')

@@ -26,12 +26,7 @@ export class AgentService {
   }
 
   // resolveShortUrl
-  async resolveShortUrl(
-    tenantId: string,
-    recordId: string,
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
-    _recordType?: string,
-  ): Promise<string> {
+  async resolveShortUrl(tenantId: string, recordId: string): Promise<string> {
     const oobRecord: OutOfBandRecord =
       await this.agent.modules.tenants.withTenantAgent(
         { tenantId },
