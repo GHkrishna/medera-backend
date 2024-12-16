@@ -43,6 +43,12 @@ export class AgentController {
   public async createDid(@Query('tenantId') tenantId: string): Promise<string> {
     return this.agentService.createDid(tenantId);
   }
+
+  @Post('/resolveDid')
+  public async resolveDid(@Query('did') did: string) {
+    return this.agentService.resolveDid(did);
+  }
+
   // createDid
   @Post('/getConnection')
   public async getConnection(

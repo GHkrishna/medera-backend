@@ -68,6 +68,11 @@ export class AgentService {
     return didKey.didState.did;
   }
 
+  async resolveDid(did: string) {
+    const resolvedDid = await this.agent.dids.resolve(did);
+    return resolvedDid;
+  }
+
   async getConnection(tenantId: string) {
     return this.agent.modules.tenants.withTenantAgent(
       { tenantId },
