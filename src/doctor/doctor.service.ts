@@ -90,6 +90,19 @@ export class DoctorService {
     });
   }
 
+  // getCredentialByPatient
+  async getPrescriptionByPrescriptionId(prescriptionId: string) {
+    const tenantId = this.doctorTenantId;
+    const prescriptionDetails =
+      await this.agent.modules.tenants.withTenantAgent(
+        { tenantId },
+        async (tenantAgent) => {
+          return tenantAgent.credentials.getFormatData(prescriptionId);
+        },
+      );
+    return prescriptionDetails;
+  }
+
   async prescribeMedicine(prescriptionDto: PrescriptionDto): Promise<object> {
     const tenantId = this.doctorTenantId;
     const oobRecordId = await this.agent.modules.tenants.withTenantAgent(
