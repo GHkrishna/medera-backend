@@ -134,7 +134,7 @@ export class PharmacyService {
                   'https://www.w3.org/2018/credentials/v1',
                   process.env.PHARMACY_RECEIPT_SCHEMA,
                 ],
-                type: ['VerifiableCredential', 'Prescription'],
+                type: ['VerifiableCredential', 'PharmacyReceipt'],
                 issuer: {
                   id: process.env.PHARMACY_DID,
                 },
