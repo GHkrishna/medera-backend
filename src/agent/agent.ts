@@ -19,6 +19,8 @@ import {
   W3cCredentialsModule,
   AutoAcceptCredential,
   AutoAcceptProof,
+  CacheModule,
+  InMemoryLruCache,
 } from '@credo-ts/core';
 import { ariesAskar } from '@hyperledger/aries-askar-nodejs';
 import { agentDependencies, HttpInboundTransport } from '@credo-ts/node';
@@ -95,6 +97,11 @@ export class AgentProvider implements OnModuleInit {
             }),
           ],
           autoAcceptProofs: AutoAcceptProof.Always,
+        }),
+        cache: new CacheModule({
+          cache: new InMemoryLruCache({
+            limit: 50,
+          }),
         }),
         credentials: new CredentialsModule({
           credentialProtocols: [
