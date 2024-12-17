@@ -74,7 +74,7 @@ SHORT_URL_DOMAIN=https://medera-backend.onrender.com
 # Doctor Tenant and Schema
 DOCTOR_TENANT_ID=
 DOCTOR_DID=
-PRESCRIPTION_SCHEMA=https://schema.credebl.id/schemas/660e1487-7d2f-42be-973b-8dc2f1cbdea3
+PRESCRIPTION_SCHEMA=https://ghkrishna.github.io/schemas/Prescription.json
 
 # Medera Neon DB
 NEON_DB_PASS=
@@ -84,7 +84,7 @@ NEON_DB_URL=
 NEON_DB_HOST=
 
 # Pharmacy Configuration
-PHARMACY_RECEIPT_SCHEMA=https://schema.credebl.id/schemas/da3b07c9-a2b0-4118-b75c-d82d5915d9f0
+PHARMACY_RECEIPT_SCHEMA=https://ghkrishna.github.io/schemas/PharmacyReceipt.json
 PRARMACY_TENANT_ID=
 PHARMACY_DID=
 
