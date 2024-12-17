@@ -34,6 +34,12 @@ export class DoctorController {
     return this.doctorService.getPrescriptionByPrescriptionId(PrescriptionId);
   }
 
+  // getAllPrescriptions
+  @Get('getAllPrescriptions')
+  public async getAllPrescriptions() {
+    return this.doctorService.getAllPrescriptions();
+  }
+
   @Post('prescriptionsByPatient')
   @ApiBody({ type: PatientDetails })
   public async getCredentialByPatient(

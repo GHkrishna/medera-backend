@@ -91,6 +91,21 @@ export class DoctorService {
   }
 
   // getCredentialByPatient
+  async getAllPrescriptions() {
+    const tenantId = this.doctorTenantId;
+    const prescriptionDetails =
+      await this.agent.modules.tenants.withTenantAgent(
+        { tenantId },
+        async (tenantAgent) => {
+          return tenantAgent.credentials.findAllByQuery({
+            role: CredentialRole.Issuer,
+          });
+        },
+      );
+    return prescriptionDetails;
+  }
+
+  // getCredentialByPatient
   async getPrescriptionByPrescriptionId(prescriptionId: string) {
     const tenantId = this.doctorTenantId;
     const prescriptionDetails =
