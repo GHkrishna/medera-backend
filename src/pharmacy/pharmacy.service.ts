@@ -3,6 +3,7 @@ import {
   CredentialRole,
   CredentialState,
   DidExchangeState,
+  ProofRole,
   ProofState,
 } from '@credo-ts/core';
 import { Injectable } from '@nestjs/common';
@@ -67,18 +68,16 @@ export class PharmacyService {
     });
   }
 
-  async getVerifiedPrescreptionDetailById(
-    prescriptionId: string,
-  ): Promise<any> {
+  async getVerifiedPrescreptionDetailById(prescriptionId: string) {
     const tenantId = this.pharmacyTenantId;
-    const presentationRecords =
-      await this.agent.modules.tenants.withTenantAgent(
-        { tenantId },
-        async (tenantAgent) => {
-          return tenantAgent.proofs.getFormatData(prescriptionId);
-        },
-      );
-    return presentationRecords;
+    let proof;
+    await this.agent.modules.tenants.withTenantAgent(
+      { tenantId },
+      async (tenantAgent) => {
+        proof = await tenantAgent.proofs.getFormatData(prescriptionId);
+      },
+    );
+    return proof;
   }
 
   async getVerifiedPrescreptionDetails(): Promise<any> {
@@ -89,6 +88,7 @@ export class PharmacyService {
         async (tenantAgent) => {
           return tenantAgent.proofs.findAllByQuery({
             state: ProofState.Done,
+            role: ProofRole.Verifier,
           });
         },
       );

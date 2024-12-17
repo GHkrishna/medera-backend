@@ -39,10 +39,10 @@ export class PharmacyController {
     return this.pharmacyService.getVerifiedPrescreptionDetails();
   }
 
-  @Get('verifiedPrescreptionDetailById')
+  @Get('verifiedPrescreptionDetailById/:prescriptionId')
   public async getVerifiedPrescreptionDetailById(
     @Param('prescriptionId') prescriptionId: string,
-  ): Promise<any> {
+  ) {
     return this.pharmacyService.getVerifiedPrescreptionDetailById(
       prescriptionId,
     );
