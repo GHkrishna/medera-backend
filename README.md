@@ -1,76 +1,169 @@
-# medera-backend
-Backend for project medera, participating in hedera future hackathon 2.0 (2024)
+# Medera Backend
 
-<p align="center">
-  <a href="http://nestjs.com/" target="blank"><img src="https://nestjs.com/img/logo-small.svg" width="200" alt="Nest Logo" /></a>
-</p>
+![Medera Logo](./public/medera.png)  
+**Medera** - Backend Service for the Hedera Hackathon
 
-[circleci-image]: https://img.shields.io/circleci/build/github/nestjs/nest/master?token=abc123def456
-[circleci-url]: https://circleci.com/gh/nestjs/nest
+This repository contains the backend service for the **Medera** project, a healthcare solution built using the [Hedera Hashgraph](https://hedera.com/) platform. The application is developed using [NestJS](https://nestjs.com/), providing a scalable, efficient, and modular backend framework.
 
-  <p align="center">A progressive <a href="http://nodejs.org" target="_blank">Node.js</a> framework for building efficient and scalable server-side applications.</p>
-    <p align="center">
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/v/@nestjs/core.svg" alt="NPM Version" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/l/@nestjs/core.svg" alt="Package License" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/dm/@nestjs/common.svg" alt="NPM Downloads" /></a>
-<a href="https://circleci.com/gh/nestjs/nest" target="_blank"><img src="https://img.shields.io/circleci/build/github/nestjs/nest/master" alt="CircleCI" /></a>
-<a href="https://coveralls.io/github/nestjs/nest?branch=master" target="_blank"><img src="https://coveralls.io/repos/github/nestjs/nest/badge.svg?branch=master#9" alt="Coverage" /></a>
-<a href="https://discord.gg/G7Qnnhy" target="_blank"><img src="https://img.shields.io/badge/discord-online-brightgreen.svg" alt="Discord"/></a>
-<a href="https://opencollective.com/nest#backer" target="_blank"><img src="https://opencollective.com/nest/backers/badge.svg" alt="Backers on Open Collective" /></a>
-<a href="https://opencollective.com/nest#sponsor" target="_blank"><img src="https://opencollective.com/nest/sponsors/badge.svg" alt="Sponsors on Open Collective" /></a>
-  <a href="https://paypal.me/kamilmysliwiec" target="_blank"><img src="https://img.shields.io/badge/Donate-PayPal-ff3f59.svg"/></a>
-    <a href="https://opencollective.com/nest#sponsor"  target="_blank"><img src="https://img.shields.io/badge/Support%20us-Open%20Collective-41B883.svg" alt="Support us"></a>
-  <a href="https://twitter.com/nestframework" target="_blank"><img src="https://img.shields.io/twitter/follow/nestframework.svg?style=social&label=Follow"></a>
-</p>
-  <!--[![Backers on Open Collective](https://opencollective.com/nest/backers/badge.svg)](https://opencollective.com/nest#backer)
-  [![Sponsors on Open Collective](https://opencollective.com/nest/sponsors/badge.svg)](https://opencollective.com/nest#sponsor)-->
+## Project Overview
+**Medera** aims to revolutionize healthcare by leveraging the power of distributed ledger technology (DLT). Using the Hedera network, we ensure secure, transparent, and decentralized healthcare solutions.
 
-## Description
+This project was built for the **Hedera Hackathon**, showcasing the integration of cutting-edge technologies for a transformative healthcare application.
 
-[Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.
+## Features
+- **DLT Integration**: Secure and transparent data storage on Hedera.
+- **Modular Architecture**: Built with NestJS for maintainability and scalability.
+- **API-First Approach**: Provides robust and documented RESTful APIs.
+- **Enhanced Security**: Uses Hedera for tamper-proof data integrity.
 
-## Installation
+## Table of Contents
+- [Getting Started](#getting-started)
+  - [Prerequisites](#prerequisites)
+  - [Installation](#installation)
+  - [Environment Variables](#environment-variables)
+- [API Documentation](#api-documentation)
+- [Project Structure](#project-structure)
+- [Contributing](#contributing)
 
-```bash
-$ yarn install
+---
+
+## Getting Started
+
+### Prerequisites
+Before running the project, ensure you have the following installed:
+
+- [Node.js](https://nodejs.org/) (v18.x or higher)
+- [npm](https://www.npmjs.com/) or [yarn](https://yarnpkg.com/)
+- A Hedera testnet/mainnet account ([Get one here](https://portal.hedera.com/))
+
+### Installation
+
+1. Clone the repository:
+   ```bash
+   git clone https://github.com/GHkrishna/medera-backend.git
+   cd medera-backend
+   ```
+
+2. Install dependencies:
+   ```bash
+   yarn install
+   ```
+
+3. Run the application:
+   ```bash
+   yarn start
+   ```
+
+4. For development mode with hot-reloading:
+   ```bash
+   yarn start:dev
+   ```
+
+### Environment Variables
+Create a `.env` file in the root directory and add the following variables:
+
+```env
+# Agent Configuration
+AgentLabel=medera
+AgentWalletID=medera
+AgentWalletKey=medera
+AGENT_PROTOCOL=http
+AGENT_ENDPOINT=https://medera-backend.onrender.com
+SHORT_URL_DOMAIN=https://medera-backend.onrender.com
+
+# Doctor Tenant and Schema
+DOCTOR_TENANT_ID=
+DOCTOR_DID=
+PRESCRIPTION_SCHEMA=https://schema.credebl.id/schemas/660e1487-7d2f-42be-973b-8dc2f1cbdea3
+
+# Medera Neon DB
+NEON_DB_PASS=
+NEON_DB=medera
+NEON_DB_ROLE=
+NEON_DB_URL=
+NEON_DB_HOST=
+
+# Pharmacy Configuration
+PHARMACY_RECEIPT_SCHEMA=https://schema.credebl.id/schemas/da3b07c9-a2b0-4118-b75c-d82d5915d9f0
+PRARMACY_TENANT_ID=
+PHARMACY_DID=
+
+# Hedera Account
+PRIVATE_KEY=
+ACCOUNT_ID=
 ```
 
-## Running the app
+Replace placeholders with the respective values:
+- **Hedera credentials**: `PRIVATE_KEY` and `ACCOUNT_ID`.
+- **Database details**: `NEON_DB_PASS`, `NEON_DB_ROLE`, and `NEON_DB_URL`.
+- **Tenant-specific IDs**: `DOCTOR_TENANT_ID`, `PHARMACY_TENANT_ID`, and `DOCTOR_DID`.
 
-```bash
-# development
-$ yarn run start
+---
 
-# watch mode
-$ yarn run start:dev
+## API Documentation
+The API endpoints are documented using Swagger.
 
-# production mode
-$ yarn run start:prod
+1. Start the application.
+2. Navigate to the API docs at: `http://localhost:3000/api`
+
+Explore and test the endpoints directly from the Swagger UI.
+
+---
+
+## Project Structure
+```
+medera-backend/
+├── src/
+│   ├── modules/         # Feature-based modules
+│   ├── controllers/     # API controllers
+│   ├── services/        # Business logic
+│   ├── entities/        # Database entities (if applicable)
+│   ├── utils/           # Utility functions
+│   ├── main.ts          # Entry point of the application
+├── test/                # Unit and integration tests
+├── .env                 # Environment configuration
+├── package.json         # Dependencies and scripts
+└── README.md            # Project documentation
 ```
 
-## Test
+---
 
-```bash
-# unit tests
-$ yarn run test
+## Contributing
+We welcome contributions! To contribute:
 
-# e2e tests
-$ yarn run test:e2e
+1. Fork the repository.
+2. Create a new branch:
+   ```bash
+   git checkout -b feature-name
+   ```
+3. Commit your changes:
+   ```bash
+   git commit -m "Add new feature"
+   ```
+4. Push to your branch:
+   ```bash
+   git push origin feature-name
+   ```
+5. Submit a pull request.
 
-# test coverage
-$ yarn run test:cov
-```
+---
 
-## Support
+## Acknowledgments
+- **Hedera**: For providing a secure and efficient DLT platform.
+- **NestJS**: For the robust backend framework.
+- **Hackathon Team**: Sai Ranjit, Tipu Singh, Pranali Dhanavade
 
-Nest is an MIT-licensed open source project. It can grow thanks to the sponsors and support by the amazing backers. If you'd like to join them, please [read more here](https://docs.nestjs.com/support).
+---
 
-## Stay in touch
+**Project Links:**
+- [Frontend Repo Clinic](https://github.com/pranalidhanavade/medera-clinic-frontend)
+- [Frontend Repo Pharmacy](https://github.com/pranalidhanavade/medera-pharmacy-frontend)
+- [Live Demo](https://github.com/GHkrishna/medera-backend/api)
 
-- Author - [Kamil Myśliwiec](https://kamilmysliwiec.com)
-- Website - [https://nestjs.com](https://nestjs.com/)
-- Twitter - [@nestframework](https://twitter.com/nestframework)
+---
 
-## License
+**Contact:**  
+For queries or support, reach out to us at: [waskekrishna@gmail.com]
 
-Nest is [MIT licensed](LICENSE).
+### Thank you,
+![Hedera Logo](./public/hedera.png) 
