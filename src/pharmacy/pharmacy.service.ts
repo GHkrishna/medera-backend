@@ -120,6 +120,37 @@ export class PharmacyService {
     });
   }
 
+  // getCredentialByPatient
+  async getAllReceipts(): Promise<object> {
+    const tenantId = this.pharmacyTenantId;
+    const credentialRecords = await this.agent.modules.tenants.withTenantAgent(
+      { tenantId },
+      async (tenantAgent) => {
+        return tenantAgent.credentials.getAll();
+      },
+    );
+    return credentialRecords.map((credentialRecord) => {
+      return {
+        id: credentialRecord.id,
+        createdAt: credentialRecord.createdAt,
+        updatedAt: credentialRecord.updatedAt,
+        credentialAttributes: credentialRecord.credentialAttributes,
+      };
+    });
+  }
+
+  // getCredentialByPatient
+  async getReceiptById(receiptId: string) {
+    const tenantId = this.pharmacyTenantId;
+    const credentialRecords = await this.agent.modules.tenants.withTenantAgent(
+      { tenantId },
+      async (tenantAgent) => {
+        return tenantAgent.credentials.getFormatData(receiptId);
+      },
+    );
+    return credentialRecords;
+  }
+
   async provideReceipt(receiptDto: ReceiptDto): Promise<object> {
     const tenantId = this.pharmacyTenantId;
     const oobRecordId = await this.agent.modules.tenants.withTenantAgent(

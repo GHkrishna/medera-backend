@@ -34,6 +34,18 @@ export class PharmacyController {
     return this.pharmacyService.getCredentialByPatient(patientConnectionIds);
   }
 
+  @Get('allReceipts')
+  public async getAllReceipts(): Promise<object> {
+    return this.pharmacyService.getAllReceipts();
+  }
+
+  @Get('receiptById/:receiptId')
+  public async getReceiptById(
+    @Param('receiptId') receiptId: string,
+  ): Promise<object> {
+    return this.pharmacyService.getReceiptById(receiptId);
+  }
+
   @Get('verifiedPrescreptionDetails')
   public async getVerifiedPrescreptionDetails(): Promise<any> {
     return this.pharmacyService.getVerifiedPrescreptionDetails();
