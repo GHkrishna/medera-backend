@@ -158,7 +158,8 @@ We welcome contributions! To contribute:
 **Project Links:**
 - [Frontend Repo Clinic](https://github.com/pranalidhanavade/medera-clinic-frontend) - [Frontend Clinic Live Demo](https://medera-clinic-frontend.vercel.app/)
 - [Frontend Repo Pharmacy](https://github.com/pranalidhanavade/medera-pharmacy-frontend) - [Frontend Pharmacy Live Demo](https://medera-pharmacy-frontend.vercel.app/)
-- [Live Demo](https://github.com/GHkrishna/medera-backend/api)
+- [Backend Live Demo](https://github.com/GHkrishna/medera-backend/api)
+> Note: To ensure the demo works seamlessly, head over to the [hosted backend](https://medera-backend.onrender.com/api#/) and ensure the application is up and running by observing the response for these three endpoints [/doctor/agentDetails](https://medera-backend.onrender.com/api#/Agent), [/doctor/agentDetails](https://medera-backend.onrender.com/api#/Doctor) and [/pharmacy/agentDetails](https://medera-backend.onrender.com/api#/Pharmacy) to ensure the backend is brought into cache by the hosting provider 
 
 ---
 
