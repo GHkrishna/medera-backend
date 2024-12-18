@@ -105,6 +105,7 @@ The API endpoints are documented using Swagger.
 
 1. Start the application.
 2. Navigate to the API docs at: `http://localhost:3000/api`
+> Note: To ensure the demo works seamlessly, head over to the backend (http://your-ip:port/api#/) and ensure the application is up and running by observing the response for these three endpoints /agent/agentDetails(http://your-ip:port/api#/agent), /doctor/agentDetails and(http://your-ip:port/api#/doctor) /pharmacy/agentDetails(http://your-ip:port/api#/pharmacy) to ensure the backend is brought into cache by the hosting provider
 
 Explore and test the endpoints directly from the Swagger UI.
 
