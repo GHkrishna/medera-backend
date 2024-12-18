@@ -68,15 +68,15 @@ AgentLabel=medera
 AgentWalletID=medera
 AgentWalletKey=medera
 AGENT_PROTOCOL=http
-AGENT_ENDPOINT=https://medera-backend.onrender.com
-SHORT_URL_DOMAIN=https://medera-backend.onrender.com
+AGENT_ENDPOINT=http://ip-address:port
+SHORT_URL_DOMAIN=http://ip-address:port
 
 # Doctor Tenant and Schema
 DOCTOR_TENANT_ID=
 DOCTOR_DID=
 PRESCRIPTION_SCHEMA=https://ghkrishna.github.io/schemas/Prescription.json
 
-# Medera Neon DB
+# Medera neon db(https://neon.tech) details:
 NEON_DB_PASS=
 NEON_DB=medera
 NEON_DB_ROLE=
