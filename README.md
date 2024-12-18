@@ -156,8 +156,8 @@ We welcome contributions! To contribute:
 ---
 
 **Project Links:**
-- [Frontend Repo Clinic](https://github.com/pranalidhanavade/medera-clinic-frontend)
-- [Frontend Repo Pharmacy](https://github.com/pranalidhanavade/medera-pharmacy-frontend)
+- [Frontend Repo Clinic](https://github.com/pranalidhanavade/medera-clinic-frontend) - [Frontend Clinic Live Demo](https://medera-clinic-frontend.vercel.app/)
+- [Frontend Repo Pharmacy](https://github.com/pranalidhanavade/medera-pharmacy-frontend) - [Frontend Pharmacy Live Demo](https://medera-pharmacy-frontend.vercel.app/)
 - [Live Demo](https://github.com/GHkrishna/medera-backend/api)
 
 ---
