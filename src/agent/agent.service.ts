@@ -2,7 +2,11 @@ import { Injectable, NotFoundException } from '@nestjs/common';
 import { AgentProvider } from './agent';
 import { RestRootAgentWithTenants } from './agentType';
 import { TenantRecord } from '@credo-ts/tenants';
-import { CreateTenantOptionsDto } from './agent.dto';
+import {
+  CreateHederaDidOptionsDto,
+  CreateTenantOptionsDto,
+  ImportHederaDidOptionsDto,
+} from './agent.dto';
 import {
   DidExchangeState,
   KeyType,
@@ -79,6 +83,45 @@ export class AgentService {
       async (tenantAgent) => {
         return tenantAgent.connections.findAllByQuery({
           state: DidExchangeState.Completed,
+        });
+      },
+    );
+  }
+
+  async createHederaDid(createHederaDidOptionsDto: CreateHederaDidOptionsDto) {
+    const tenantId = createHederaDidOptionsDto.tenantId;
+    const didHedera = await this.agent.modules.tenants.withTenantAgent(
+      { tenantId },
+      async (tenantAgent) => {
+        return tenantAgent.dids.create({
+          method: 'hedera',
+          secret: {
+            network: 'testnet',
+            seed: createHederaDidOptionsDto.seed,
+          },
+        });
+      },
+    );
+    return didHedera;
+  }
+  async importHederaDid(importHederaDidOptionsDto: ImportHederaDidOptionsDto) {
+    const tenantId = importHederaDidOptionsDto.tenantId;
+    return this.agent.modules.tenants.withTenantAgent(
+      { tenantId },
+      async (tenantAgent) => {
+        const did = importHederaDidOptionsDto.did;
+
+        await tenantAgent.dids.import({
+          did,
+          overwrite: true,
+          privateKeys: [
+            {
+              privateKey: TypedArrayEncoder.fromString(
+                importHederaDidOptionsDto.seed,
+              ),
+              keyType: KeyType.Ed25519,
+            },
+          ],
         });
       },
     );

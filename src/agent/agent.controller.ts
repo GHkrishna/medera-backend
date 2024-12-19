@@ -2,7 +2,11 @@ import { Body, Controller, Get, Param, Post, Query, Res } from '@nestjs/common';
 import { AgentService } from './agent.service';
 import { TenantRecord } from '@credo-ts/tenants';
 import { ApiBody } from '@nestjs/swagger';
-import { CreateTenantOptionsDto } from './agent.dto';
+import {
+  CreateHederaDidOptionsDto,
+  CreateTenantOptionsDto,
+  ImportHederaDidOptionsDto,
+} from './agent.dto';
 import { Response } from 'express';
 
 @Controller('agent')
@@ -55,5 +59,21 @@ export class AgentController {
     @Query('tenantId') tenantId: string,
   ): Promise<object> {
     return this.agentService.getConnection(tenantId);
+  }
+
+  @Post('/createHederaDid')
+  @ApiBody({ type: CreateHederaDidOptionsDto })
+  public async createHederaDid(
+    @Body() createHederaDidOptionsDto: CreateHederaDidOptionsDto,
+  ) {
+    return this.agentService.createHederaDid(createHederaDidOptionsDto);
+  }
+
+  @Post('/importHederaDid')
+  @ApiBody({ type: ImportHederaDidOptionsDto })
+  public async importHederaDid(
+    @Body() importHederaDidOptionsDto: ImportHederaDidOptionsDto,
+  ) {
+    return this.agentService.importHederaDid(importHederaDidOptionsDto);
   }
 }
