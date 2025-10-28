@@ -1,3 +1,10 @@
+<hr/>
+
+# Note:
+- **The main repo including all the different components**: https://github.com/GHkrishna/medera
+
+<hr>
+
 # Medera Backend
 
 ![Medera Logo](./public/medera.png)  
